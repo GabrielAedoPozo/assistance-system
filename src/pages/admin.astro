@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Administrador from '../components/Administrador.jsx'
+import { EMPRESA_NOMBRE } from 'astro:env/server'
+import { esAdmin } from '../lib/auth.js'
+
+const autenticado = esAdmin(Astro.cookies)
+---
+
+<Layout title={`Administrador · ${EMPRESA_NOMBRE}`}>
+  <main class="max-w-4xl mx-auto px-4 py-6">
+    <header class="flex items-center gap-3 mb-4">
+      <a href="/" class="text-slate-400 hover:text-slate-600" title="Ir al punto de marcación">
+        <i class="fa-solid fa-qrcode text-xl"></i>
+      </a>
+      <div>
+        <h1 class="font-bold text-slate-800 text-lg leading-tight">Control de Asistencia</h1>
+        <p class="text-xs text-slate-500">{EMPRESA_NOMBRE}</p>
+      </div>
+    </header>
+    <Administrador client:only="react" autenticado={autenticado} empresa={EMPRESA_NOMBRE} />
+  </main>
+</Layout>

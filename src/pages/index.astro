@@ -1,0 +1,22 @@
+---
+// Punto de marcación: abrir esta página en la tablet/celular de la entrada
+import Layout from '../layouts/Layout.astro'
+import Ingreso from '../components/Ingreso.jsx'
+import { EMPRESA_NOMBRE } from 'astro:env/server'
+---
+
+<Layout title={`Asistencia · ${EMPRESA_NOMBRE}`}>
+  <main class="min-h-screen flex flex-col px-4 py-6">
+    <header class="text-center">
+      <p class="text-xs font-semibold uppercase tracking-widest text-blue-700">{EMPRESA_NOMBRE}</p>
+    </header>
+    <div class="flex-1">
+      <Ingreso client:only="react" />
+    </div>
+    <footer class="text-center pt-6">
+      <a href="/admin" class="text-xs text-slate-400 hover:text-slate-600">
+        <i class="fa-solid fa-gear mr-1"></i>Administrador
+      </a>
+    </footer>
+  </main>
+</Layout>
